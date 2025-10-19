@@ -1,0 +1,1 @@
+SELECT SYSDATE + 30 FROM courses;
