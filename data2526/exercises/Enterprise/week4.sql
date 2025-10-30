@@ -109,14 +109,11 @@ WHERE department_id = (
   AND project_id <> 3;
 
 --oef 9
-
-SELECT
-    e1.first_name,
-    e2.last_name,
-    e3.last_name AS uberboss
+SELECT e1.first_name,
+       e2.last_name AS "boss",
+       e3.last_name AS "uberboss"
 FROM employees e1
-         JOIN employees e2
-              ON e1.manager_id = e2.employee_id
-         JOIN employees e3
-              ON e2.manager_id = e3.employee_id
+JOIN employees e2 ON e1.manager_id = e2.employee_id
+JOIN employees e3 ON e2.manager_id = e3.employee_id
 WHERE UPPER(e3.last_name) = 'BORDOLOI';
+
