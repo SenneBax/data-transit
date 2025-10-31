@@ -14,10 +14,10 @@ AND INITCAP(location) in ('EINDHOVEN','MAARSSEN');
 
 --oef3.
 
-SELECT employee_id, AGE(birth_date) as "age partner"
+SELECT employee_id, DATE_PART('year', AGE(birth_date)) as "age partner"
 from family_members
 WHERE date_part('year',AGE(birth_date)) BETWEEN 35 and 45
-AND UPPER(relationship) = 'PARTNER';
+AND upper(relationship) = 'PARTNER';
 
 --oef4.
 SELECT first_name,

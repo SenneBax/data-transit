@@ -88,14 +88,14 @@ WHERE UPPER(e1.gender) = 'M'
 --oef 7
 
 SELECT
-    employee_id,
-    last_name,
-    birth_date
+    e1.employee_id,
+    e1.last_name,
+    e1.birth_date
 FROM employees e1
 JOIN employees e2
 ON TO_CHAR(e1.birth_date, 'month')=TO_CHAR(e2.birth_date, 'month')
 AND e1.employee_id != e2.employee_id
-ORDER BY EXTRACT(MONTH FROM birth_date), last_name, first_name;
+ORDER BY EXTRACT(MONTH FROM e1.birth_date), e2.last_name, e2.first_name;
 
 
 --Oef 8
