@@ -417,5 +417,3 @@ SELECT last_name, salary FROM employees ORDER BY salary DESC FETCH NEXT 2 ROWS W
 SELECT last_name FROM employees ORDER BY last_name FETCH NEXT 1 ROWS ONLY;
 SELECT last_name FROM employees ORDER BY last_name FETCH FIRST 1 ROW ONLY;
 
-02_0_SELECT_basics_and_fetch.sql
-02_0_SELECT_basics_and_fetch.sql wordt weergegeven.

@@ -12,6 +12,8 @@ from employees
 WHERE date_part('year',AGE(birth_date) > 30)
 AND INITCAP(location) in ('EINDHOVEN','MAARSSEN');
 
+
+
 --oef3.
 
 SELECT employee_id, DATE_PART('year', AGE(birth_date)) as "age partner"

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/data2526/exercises/Enterprise/combinatieOefening.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/data2526/exercises/Enterprise/week3.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/data2526/exercises/Enterprise/week4.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/data2526/exercises/StudentAdministrations/SApart1.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/data2526/exercises/examenvoorbereiding/examenvoorbereidingEnterprise.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/data2526/exercises/examenvoorbereiding/examenvoorbereidingSA.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/data2526/scripts/_pg_CRE_ENTERPRISE_EN.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/data2526/scripts/_pg_CRE_SA.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/data2526/scripts/_pg_FILL_ENTERPRISE_EN.sql" dialect="PostgreSQL" />

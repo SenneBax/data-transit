@@ -169,7 +169,8 @@ GROUP BY instructor_id;
 --Bepaal voor de sections betreffende de cursus ‘Intro to Programming’
 --(section_id tussen 85 en 93) het hoogst behaalde cijfer voor het
 --Midterm examen (grade_type_code =’MT’).
-SELECT section_id, MAX(numeric_grade) "highest grade"
+SELECT section_id,
+       MAX(numeric_grade) "highest grade"
 FROM grades
 WHERE grade_type_code = 'MT'
   AND section_id BETWEEN 85 AND 93
@@ -178,14 +179,16 @@ GROUP BY section_id;
 --18
 --Bepaal voor studenten die zich inschreven voor meer dan 2 secties,
 --het gemiddelde cijfer dat ze op al hun evaluaties behaalden.
-SELECT student_id,ROUND(AVG(numeric_grade))"average evaluation"
+SELECT student_id,
+       ROUND(AVG(numeric_grade))"average evaluation"
 FROM grades
 GROUP BY student_id
 HAVING COUNT(distinct section_id)>2;
 
 --19
 --Geef weer uit welke streken (zip bekijken) er meer dan 5 studenten komen
-SELECT zip,COUNT(*) "Number of students"
+SELECT zip,
+       COUNT(*) "Number of students"
 FROM students
 GROUP BY zip
 HAVING COUNT(*)>5;
@@ -214,7 +217,8 @@ WHERE c.prerequisite= 350;
 --22
 --Welke  docenten doceerden nog geen cursussecties.  Geef ook weer uit welke
 --state ze komen.
-SELECT last_name||' '||first_name "name lecturer",state
+SELECT CONCAT_ws(' ' ,i.last_name, i.first_name) "name lecturer",
+       z.state
 FROM instructors i
          LEFT OUTER JOIN sections s  ON (i.instructor_id=s.instructor_id)
          LEFT OUTER JOIN zipcodes z ON (z.zip=i.zip)
@@ -222,7 +226,8 @@ WHERE section_id IS NULL;
 
 --23
 --Toon de niet populaire cursussen (= cursussen waarvoor nog geen inschrijvingen voorkomen).
-SELECT s.section_id,description unpopular_courses
+SELECT s.section_id,
+       description unpopular_courses
 FROM enrollments e
          RIGHT OUTER JOIN sections s ON (s.section_id=e. section_id)
          JOIN courses c ON (s.course_no=c.course_no)

@@ -94,7 +94,7 @@ SELECT
 FROM employees e1
 JOIN employees e2
 ON TO_CHAR(e1.birth_date, 'month')=TO_CHAR(e2.birth_date, 'month')
-AND e1.employee_id != e2.employee_id
+AND e1.employee_id <> e2.employee_id
 ORDER BY EXTRACT(MONTH FROM e1.birth_date), e2.last_name, e2.first_name;
 
 
