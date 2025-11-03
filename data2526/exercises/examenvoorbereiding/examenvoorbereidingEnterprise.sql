@@ -108,3 +108,16 @@ FROM employees e
 GROUP BY p.project_name, d.department_name
 HAVING SUM(t.hours) > 30
 ORDER BY p.project_name;
+
+-- Welke medewerkers werkten meer uren aan project 2 dan medewerker
+-- Bock? Geef hun namen.
+
+SELECT e.last_name,t.hours
+FROM employees ebock
+         JOIN tasks tbock
+              ON (ebock.employee_id=tbock.employee_id)
+         JOIN tasks t ON (tbock.project_id=t.project_id)
+         JOIN employees e ON (t.employee_id=e.employee_id)
+WHERE UPPER(ebock.last_name)='BOCK'
+  AND tbock.project_id=2
+  AND t.hours>tbock.hours;
