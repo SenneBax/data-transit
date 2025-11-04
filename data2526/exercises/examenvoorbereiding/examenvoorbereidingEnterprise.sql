@@ -98,7 +98,7 @@ ORDER BY e.salary DESC;
 
 
 SELECT
-    COUNT(DISTINCT e.employee_id) || ' employees' AS "#employees",
+    CONCAT_ws(' ', COUNT(DISTINCT e.employee_id) ,'employees') AS "#employees",
     'perform tasks on ' || INITCAP(p.project_name) AS "project",
     'which is supported by dept. ' || d.department_name AS "department"
 FROM employees e

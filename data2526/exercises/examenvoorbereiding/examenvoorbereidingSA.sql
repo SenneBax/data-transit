@@ -148,3 +148,64 @@ JOIN enrollments e ON s.section_id = e.section_id
 JOIN courses c ON s.course_no = c.course_no
 WHERE UPPER(description)='INTRO TO INFORMATION SYSTEMS'
 ORDER BY e.student_id;
+
+-- Oefening 7
+-- Maak een mailing-adressenlijst van docenten die secties hebben gegeven met
+-- startdatum in april 2021.
+
+SELECT CONCAT_ws(' ',i.first_name, i.last_name) "name", i.street_address, CONCAT(zip.city, ',', zip.state, ' ', zip.zip) "city_state_zip", s.start_date_time "start_date", s.section_id "section"
+FROM instructors i
+JOIN zipcodes zip ON zip.zip = i.zip
+JOIN sections s ON s.instructor_id = i.instructor_id
+WHERE TO_CHAR(s.start_date_time,'mm-yyyy') = '04-2021'
+ORDER BY name, start_date ;
+
+-- Oefening 9
+-- Toon alle punten die student Daniel Wicelinski behaalde voor section_id 87.
+
+SELECT CONCAT_ws(' ',s.first_name, s.last_name) "name", e.section_id, g.grade_type_code ||' '|| g.grade_code_occurrence AS evaluation_type, g.numeric_grade
+FROM enrollments e
+JOIN grades g ON g.student_id = e.student_id AND g.section_id = e.section_id
+JOIN students s ON e.student_id = s.student_id
+WHERE UPPER(CONCAT_ws(' ',s.first_name, s.last_name)) = 'DANIEL WICELINSKI'
+AND e.section_id = 87;
+
+SELECT LOWER(c.description) "description", s.section_no, s.location, s.capacity
+FROM sections s
+         JOIN courses c ON c.course_no = s.course_no
+WHERE UPPER(s.location) = 'L211'
+    ORDER BY c.description;
+
+SELECT s.first_name, s.last_name, numeric_grade
+FROM students s
+         JOIN enrollments e ON e.student_id = s.student_id
+         JOIN grades g ON e.student_id = g.student_id AND e.section_id = g.section_id
+WHERE g.grade_type_code='PJ' AND numeric_grade > 98;
+
+SELECT s.section_id, s.start_date_time, s.location
+FROM sections s
+         JOIN sections s2 ON s.location = s2.location AND s.start_date_time = s2.start_date_time
+WHERE s.section_id <> s2.section_id;
+
+SELECT s.student_id as "Student ID", i.instructor_id as "Instructor ID", s.zip as "Student ZIP" , i.zip as "Instructor ZIP"
+FROM students s
+         JOIN zipcodes zip ON s.zip = zip.zip
+         JOIN instructors i ON zip.zip = i.zip
+WHERE s.zip = i.zip
+ORDER BY s.student_id;
+
+SELECT DISTINCT s.student_id, s.first_name, s.last_name
+FROM students s
+         JOIN enrollments e ON s.student_id = e.student_id
+         JOIN zipcodes z ON z.zip = s.zip
+WHERE e.enroll_date IS NOT null
+  AND z.state = 'CT'
+ORDER BY student_id;
+
+SELECT c.description, s.section_no, TO_CHAR(s.start_date_time, 'YYYY-MM-DD') "start_date_time"
+FROM sections s
+         JOIN courses c ON c.course_no = s.course_no
+         JOIN enrollments e ON e.section_id = s.section_id
+         JOIN students se ON se.student_id = e.student_id
+WHERE TRIM(UPPER(CONCAT_ws(' ', se.first_name, se.last_name)))='JOSEPH GERMAN';
+
